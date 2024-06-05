@@ -112,10 +112,10 @@ end
 ```lua
 local function physics_world_listener(self, event, data)
     if event == hash("contact_point_event") then
-        local position_a = event.a.normal * SIZE
-        local position_b =  event.b.normal * SIZE
-        local url_a = msg.url(nil, event.a.id, "collisionobject")
-        local url_b = msg.url(nil, event.b.id, "collisionobject")
+        local position_a = data.a.normal * SIZE
+        local position_b =  data.b.normal * SIZE
+        local url_a = msg.url(nil, data.a.id, "collisionobject")
+        local url_b = msg.url(nil, data.b.id, "collisionobject")
         -- 填充将被发送到 `physics.create_joint()` 的消息
         local message = {physics.JOINT_TYPE_FIXED, url_a, "joind_id", position_a, url_b, position_b, {max_length = SIZE}}
         -- 发送消息到本对象
